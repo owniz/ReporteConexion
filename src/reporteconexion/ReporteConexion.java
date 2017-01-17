@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package reporteconexion;
 
 import com.mysql.jdbc.Connection;
@@ -24,16 +19,12 @@ import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.view.JRViewer;
 
 /**
- *
- * @author dam2
+ * Clase que genera a través del driver JDBC y el archivo jasper generado por 
+ * iReport un archivo pdf o html con los datos de la BBDD, además mostraremos
+ * el pdf desde un JFrame
  */
 public class ReporteConexion {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conexion =
@@ -47,7 +38,7 @@ public class ReporteConexion {
             //Para PDF
             Exporter exporter;
             exporter = new JRPdfExporter();
-                   // new JRPdfExporter(); // o También así: Exporter exporter = new JRPdfExporter();
+            // new JRPdfExporter(); // o También así: Exporter exporter = new JRPdfExporter();
 
             exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
             exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(new
@@ -67,6 +58,7 @@ public class ReporteConexion {
             exporter.setConfiguration(configuration);
             exporter.exportReport();*/
             
+            // JFrame con una vista del pdf generado
             JFrame frame = new JFrame("Reporte");
             frame.getContentPane().add(new JRViewer(jasperPrint));
             frame.pack();
